@@ -84,8 +84,8 @@
 		
 		console.log(postAPostJson.value);
 		
-		function postAPost(){
-			
+		function postAPost(event){
+			event.preventDefault();
 			postAPostJson = document.getElementById('post_json');
 			// Make a request for a user with a given ID
 			axios.post(postAPostUrl, postAPostJson.value )
