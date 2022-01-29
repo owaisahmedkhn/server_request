@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GET and POST Server Requests</title>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+	<div class="container clearboth">
+		
+		<div class="row price_container">
+			<h2>GET and POST Server Requests</h2>
+			<form id="priceCalcForm" action="https://owais-heroku-server.herokuapp.com/">
+			
+			
+				<div class="">
+					<div class="">
+						<label>
+							Post a  Single Post
+						</label>
+						<div class="">
+							<input type="text" id="post_json" class=" post_json" name ="post_json" value='{"key":"test value"}' placeholder="Enter json format post object"/>
+						</div>	
+					</div>
+					<div class="">
+						<input type="button" id="post_a_post" class="post_a_post" name ="post_a_post" value="POST" />
+					</div>	
+					<div id="resp_post_single_post" class="resp_post">
+					
+					</div>
+				</div>
+				<br/>
+				<div class="">
+					<div class="">
+						<label>
+							Get Single Post
+						</label>
+						<div class="">
+							<input type="number" id="enter_post_index" class="enter_post_index" name ="enter_post_index" value="0" placeholder"Enter index of post you want to get"/>
+						</div>	
+					</div>
+					<div class="">
+						<input type="button" id="get_post" class="get_post" name ="get_post" value="Get Post" />
+					</div>
+					<div id="resp_get_single_post" class="resp_post">
+					
+					</div>					
+				</div>
+				
+				<br/>
+				
+				<div class="">
+					<div class="col-md-12">
+						<div class="">
+							<input type="button" id="get_all_post" class="get_all_post" name ="get_all_post" value="Get All Posts" />
+						</div>	
+					</div>
+					<div id="resp_get_all_posts" class="resp_post">
+					
+					</div>	
+				</div>
+				
+			</form>
+				
+		</div>	
+		
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery_validate.js"></script>		
+	 	 
+	<script>
+		
+		let getAllPostsObj = document.getElementById('get_all_post');
+		let getPostObj = document.getElementById('get_post');
+		let postAPostObj = document.getElementById('post_a_post');
+		
+		
+		 
+		let reqUrl = 'https://owais-heroku-server.herokuapp.com/';
+		
+		let getAllPostsUrl = reqUrl + 'posts/';
+		let getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
+		let postAPostUrl = reqUrl + 'post/';
+		
+		let postAPostJson = document.getElementById('post_json');
+		
+		console.log(postAPostJson.value);
+		
+		function postAPost(){
+			
+			postAPostJson = document.getElementById('post_json');
+			// Make a request for a user with a given ID
+			axios.post(postAPostUrl, postAPostJson.value )
+			  .then(function (response) {
+				// handle success
+				document.getElementById('resp_post_single_post').innerHTML = JSON.stringify(response);
+				
+				console.log(response);
+			  })
+			  .catch(function (error) {
+				// handle error
+				document.getElementById('resp_post_single_post').innerHTML = JSON.stringify(response);
+			  });
+		
+		}
+		
+		function getPost(){
+			
+			getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
+				// Make a request for a user with a given ID
+				axios.get(getPostUrl)
+				  .then(function (response) {
+					// handle success
+					document.getElementById('resp_get_single_post').innerHTML = JSON.stringify(response.data);
+					
+					console.log(response.data);
+				  })
+				  .catch(function (error) {
+					// handle error
+					document.getElementById('resp_get_single_post').innerHTML = JSON.stringify(response);
+				  });
+		
+		}
+		
+		function getAllPosts(){
+		
+				document.getElementById('resp_get_all_posts').innerHtml = ' ';
+				
+				// Make a request for a user with a given ID
+				axios.get(getAllPostsUrl)
+				  .then(function (response) {
+					// handle success
+					document.getElementById('resp_get_all_posts').innerHTML = JSON.stringify(response.data);
+					
+					console.log(response.data);
+				  })
+				  .catch(function (error) {
+					// handle error
+					document.getElementById('resp_get_all_posts').innerHtml = JSON.stringify(response.data);
+				  });
+		
+		}
+		
+		getAllPostsObj.addEventListener("click", getAllPosts);
+		
+		getPostObj.addEventListener("click", getPost);
+		
+		postAPostObj.addEventListener("click", postAPost);
+		
+	 </script>
+	 
+	
+
+</body>
+</html>
