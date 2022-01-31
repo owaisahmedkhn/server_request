@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>GET and POST Server Requests</title>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	 <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -10,7 +13,7 @@
 		
 		<div class="row price_container">
 			<h2>GET and POST Server Requests</h2>
-			<form id="priceCalcForm" action="https://owais-heroku-server.herokuapp.com/">
+			<form id="priceCalcForm"> <!-- action="https://owais-heroku-server.herokuapp.com/" -->
 			
 			
 				<div class="">
@@ -79,16 +82,22 @@
 		let getAllPostsUrl = reqUrl + 'posts/';
 		let getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
 		let postAPostUrl = reqUrl + 'post/';
+		let postObj = {
+			"key" : "test"
+		};
 		
-		let postAPostJson = document.getElementById('post_json');
+		let postVal = document.getElementById('post_json');
 		
 		console.log(postAPostJson.value);
 		
 		function postAPost(event){
 			event.preventDefault();
-			postAPostJson = document.getElementById('post_json');
+			postVal = document.getElementById('post_json').value;
+			postObj = {
+				"key" : postVal
+			};
 			// Make a request for a user with a given ID
-			axios.post(postAPostUrl, postAPostJson.value )
+			axios.post(postAPostUrl, postObj )
 			  .then(function (response) {
 				// handle success
 				document.getElementById('resp_post_single_post').innerHTML = JSON.stringify(response);
