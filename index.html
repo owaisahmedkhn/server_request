@@ -89,12 +89,12 @@
 		
 		function postAPost(event){
 			event.preventDefault();
-			postVal = document.getElementById('post_json');
+			postVal = document.getElementById('post_json').value;
 			postObj = {
 				"key" : postVal
 			};
 			// Make a request for a user with a given ID
-			axios.post(postAPostUrl, postObj.value )
+			axios.post(postAPostUrl, postObj )
 			  .then(function (response) {
 				// handle success
 				document.getElementById('resp_post_single_post').innerHTML = JSON.stringify(response);
