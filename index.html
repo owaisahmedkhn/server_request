@@ -77,7 +77,9 @@
 		
 		
 		 
-		let reqUrl = 'https://owais-heroku-server.herokuapp.com/';
+		//let reqUrl = 'https://owais-heroku-server.herokuapp.com/';
+		
+		let reqUrl = 'https://withmongodb.herokuapp.com/';
 		
 		let getAllPostsUrl = reqUrl + 'posts/';
 		let getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
@@ -86,9 +88,9 @@
 			"key" : "test"
 		};
 		
-		let postVal = document.getElementById('post_json');
+		let postVal = document.getElementById('post_json').value;
 		
-		console.log(postAPostJson.value);
+		console.log(postVal);
 		
 		function postAPost(event){
 			event.preventDefault();
