@@ -75,7 +75,7 @@
 		
 		
 		 
-		let reqUrl = 'https://owais-heroku-server.herokuapp.com/';
+		let reqUrl = 'https://withmongodb.herokuapp.com/';
 		
 		let getAllPostsUrl = reqUrl + 'posts/';
 		let getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
@@ -94,6 +94,7 @@
 			postObj = {
 				"key" : postVal
 			};
+			postObj = postVal;
 			// Make a request for a user with a given ID
 			axios.post(postAPostUrl, postObj )
 			  .then(function (response) {
