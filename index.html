@@ -81,7 +81,7 @@
 		let getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
 		let postAPostUrl = reqUrl + 'post/';
 		let postObj = {
-			"key" : "test"
+			"text" : "test"
 		};
 		
 		let postVal = document.getElementById('post_json').value;
@@ -96,7 +96,7 @@
 			};
 			//postObj = postVal;
 			// Make a request for a user with a given ID
-			axios.post(postAPostUrl, {text : postVal} )
+			axios.post(postAPostUrl, postObj )
 			  .then(function (response) {
 				// handle success
 				document.getElementById('resp_post_single_post').innerHTML = JSON.stringify(response);
