@@ -96,7 +96,7 @@
 			};
 			//postObj = postVal;
 			// Make a request for a user with a given ID
-			axios.post(postAPostUrl, postObj )
+			axios.post(postAPostUrl, {text : postVal} )
 			  .then(function (response) {
 				// handle success
 				document.getElementById('resp_post_single_post').innerHTML = JSON.stringify(response);
