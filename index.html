@@ -92,9 +92,9 @@
 			event.preventDefault();
 			postVal = document.getElementById('post_json').value;
 			postObj = {
-				"key" : postVal
+				"text" : postVal
 			};
-			postObj = postVal;
+			//postObj = postVal;
 			// Make a request for a user with a given ID
 			axios.post(postAPostUrl, postObj )
 			  .then(function (response) {
