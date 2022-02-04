@@ -113,6 +113,8 @@
 		function getPost(){
 			
 			getPostUrl = reqUrl + 'post/' + document.getElementById('enter_post_index').value;
+			console.log(getPostUrl);
+			console.log(document.getElementById('enter_post_index').value);
 				// Make a request for a user with a given ID
 				axios.get(getPostUrl)
 				  .then(function (response) {
@@ -123,7 +125,7 @@
 				  })
 				  .catch(function (error) {
 					// handle error
-					document.getElementById('resp_get_single_post').innerHTML = JSON.stringify(response);
+					document.getElementById('resp_get_single_post').innerHTML = response;
 				  });
 		
 		}
