@@ -51,6 +51,28 @@
 				<br/>
 				
 				<div class="">
+					<div class="">
+						<label>
+							Update Single Post
+						</label>
+						<div class="">
+							<input type="text" id="update_post_index" class="update_post_index" name ="update_post_index" value="0" placeholder"Enter index of post you want to update"/>
+						</div>	
+						<div class="">
+							<input type="text" id="update_post_text" class="update_post_text" name ="update_post_text" value="0" placeholder"Enter index of post you want to update"/>
+						</div>
+					</div>
+					<div class="">
+						<input type="button" id="update_post" class="update_post" name ="update_post" value="Update Post" />
+					</div>
+					<div id="resp_update_single_post" class="resp_post">
+					
+					</div>					
+				</div>
+				
+				<br/>
+				
+				<div class="">
 					<div class="col-md-12">
 						<div class="">
 							<input type="button" id="get_all_post" class="get_all_post" name ="get_all_post" value="Get All Posts" />
@@ -72,6 +94,7 @@
 		let getAllPostsObj = document.getElementById('get_all_post');
 		let getPostObj = document.getElementById('get_post');
 		let postAPostObj = document.getElementById('post_a_post');
+		let updatePostObj = document.getElementById('update_post');
 		
 		
 		 
@@ -130,6 +153,26 @@
 		
 		}
 		
+		function updateAPost(){
+			
+			getPostUrl = reqUrl + 'post/' + document.getElementById('update_post_index').value;
+			console.log(getPostUrl);
+			console.log(document.getElementById('update_post_index').value);
+				// Make a request for a user with a given ID
+				axios.put(getPostUrl,{ text : document.getElementById('update_post_text').value})
+				  .then(function (response) {
+					// handle success
+					document.getElementById('resp_get_single_post').innerHTML = JSON.stringify(response.data);
+					
+					console.log(response.data);
+				  })
+				  .catch(function (error) {
+					// handle error
+					document.getElementById('resp_get_single_post').innerHTML = response;
+				  });
+		
+		}
+		
 		function getAllPosts(){
 		
 				document.getElementById('resp_get_all_posts').innerHtml = ' ';
@@ -154,6 +197,8 @@
 		getPostObj.addEventListener("click", getPost);
 		
 		postAPostObj.addEventListener("click", postAPost);
+		
+		postAPostObj.addEventListener("click", updateAPost);
 		
 	 </script>
 	 
